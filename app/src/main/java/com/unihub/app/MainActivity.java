@@ -1,4 +1,3 @@
-
 package com.unihub.app;
 
 import android.app.Activity;
@@ -6,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,25 +44,20 @@ public class MainActivity extends Activity {
         sportsButton.setText("Sports");
         layout.addView(sportsButton);
 
-        sportsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                MainActivity.this, SportsActivity.class
-            );
-            startActivity(intent);
-        });
+        sportsButton.setOnClickListener(v -> openActivity(v, SportsActivity.class));
 
         // Cafeteria button
         Button cafeteriaButton = new Button(this);
         cafeteriaButton.setText("Cafeteria");
         layout.addView(cafeteriaButton);
 
-        cafeteriaButton.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                MainActivity.this, CafeteriaActivity.class
-            );
-            startActivity(intent);
-        });
+        cafeteriaButton.setOnClickListener(v -> openActivity(v, CafeteriaActivity.class));
 
         setContentView(layout);
+    }
+
+    private void openActivity(View view, Class<?> activityClass) {
+        Intent intent = new Intent(view.getContext(), activityClass);
+        startActivity(intent);
     }
 }

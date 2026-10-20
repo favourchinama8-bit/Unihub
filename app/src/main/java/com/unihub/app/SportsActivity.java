@@ -1,4 +1,3 @@
-
 package com.unihub.app;
 
 import android.app.Activity;
@@ -13,17 +12,18 @@ import android.widget.ScrollView;
 public class SportsActivity extends Activity {
 
     @Override
+    @SuppressWarnings({"unused"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       ScrollView scrollView = new ScrollView(this);
+        ScrollView scrollView = new ScrollView(this);
 
-LinearLayout layout = new LinearLayout(this);
-layout.setOrientation(LinearLayout.VERTICAL);
-layout.setPadding(24, 24, 24, 24);
-layout.setBackgroundColor(Color.rgb(35, 35, 40));
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(24, 24, 24, 24);
+        layout.setBackgroundColor(Color.rgb(35, 35, 40));
 
-scrollView.addView(layout);
+        scrollView.addView(layout);
 
         TextView title = new TextView(this);
         title.setText("UniHub Sports");
@@ -32,47 +32,24 @@ scrollView.addView(layout);
         title.setGravity(Gravity.CENTER);
         layout.addView(title);
 
-        
-TextView fixtures = new TextView(this);
-fixtures.setText(
-    "CAMPUS SPORTS\n\n" +
-    "FOOTBALL\n" +
-    "Fixtures to be announced\n\n" +
-    "BASKETBALL\n" +
-    "Fixtures to be announced\n\n" +
-    "NETBALL\n" +
-    "Fixtures to be announced\n\n" +
-    "CHESS\n" +
-    "Competitions to be announced\n\n" +
-    "BADMINTON\n" +
-    "Fixtures to be announced\n\n" +
-    "VOLLEYBALL\n" +
-    "Fixtures to be announced\n\n" +
-    "TABLE TENNIS\n" +
-    "Competitions to be announced"
-);
-
-        fixtures.setTextSize(18);
-        fixtures.setTextColor(Color.WHITE);
-        fixtures.setPadding(0, 30, 0, 30);
+        TextView fixtures = createFixturesTextView();
         layout.addView(fixtures);
 
         TextView training = new TextView(this);
-        training.setText(
-            "TRAINING\n\n" +
-            "Contact the campus sports team " +
-            "for training schedules."
-        );
+        training.setText("""
+            TRAINING
+
+            Contact the campus sports team for training schedules.""");
         training.setTextSize(17);
         training.setTextColor(Color.LTGRAY);
         layout.addView(training);
 
         TextView gym = new TextView(this);
-        gym.setText(
-            "\nGYM INFORMATION\n\n" +
-            "Contact the campus gym for " +
-            "opening hours."
-        );
+        gym.setText("""
+
+            GYM INFORMATION
+
+            Contact the campus gym for opening hours.""");
         gym.setTextSize(17);
         gym.setTextColor(Color.LTGRAY);
         layout.addView(gym);
@@ -83,6 +60,38 @@ fixtures.setText(
 
         backButton.setOnClickListener(v -> finish());
 
-       setContentView(scrollView);
+        setContentView(scrollView);
+    }
+
+    private TextView createFixturesTextView() {
+        TextView fixtures = new TextView(this);
+        fixtures.setText("""
+            CAMPUS SPORTS
+
+            FOOTBALL
+            Fixtures to be announced
+
+            BASKETBALL
+            Fixtures to be announced
+
+            NETBALL
+            Fixtures to be announced
+
+            CHESS
+            Competitions to be announced
+
+            BADMINTON
+            Fixtures to be announced
+
+            VOLLEYBALL
+            Fixtures to be announced
+
+            TABLE TENNIS
+            Competitions to be announced""");
+
+        fixtures.setTextSize(18);
+        fixtures.setTextColor(Color.WHITE);
+        fixtures.setPadding(0, 30, 0, 30);
+        return fixtures;
     }
 }
